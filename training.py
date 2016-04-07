@@ -5,6 +5,10 @@ from skimage.viewer import ImageViewer
 import numpy as np
 import pickle
 from sklearn.svm import LinearSVC
+import dlib
+from skimage import novice
+detector = dlib.get_frontal_face_detector()
+
 
 
 class LocalBinaryPatterns:
@@ -28,9 +32,6 @@ def dumpdata():
         pickle.dump(label_list, f)
     with open("training_data.txt","wb") as f:
         pickle.dump(data_list, f)
-
-
-
     """f=open("training_label","w")
     for i in label_list:
         f.write(str(i)+"\n")
@@ -50,7 +51,7 @@ lbpDesc = LocalBinaryPatterns(24, 8)
 def collectdata():
     global label_list
     global data_list
-    basepath_training="/home/partha/projects/ageidentification/images/training"
+    basepath_training="/home/partha/projects/ageidentification/images/training_age"
     count=0
     for fname_training in os.listdir(basepath_training):
         count+=1
@@ -80,13 +81,49 @@ def collectdata():
             #print file+"\n"
             base_save="/home/partha/projects/ageidentification/dump/"
             img = io.imread(path_class+"/"+file)
-            grayimg = color.rgb2gray(img)
-            #io.imsave(base_save+file,grayimg)
-            count+=1
-            histogramdata = lbpDesc.calculatehistogram(grayimg)
-            #add the labels and data
-            label_list.append(class_index)
-            data_list.append(histogramdata)
+            img_temp = novice.open(path_class+"/"+file)
+            width, height = img_temp.size
+            #print width, height
+
+            faces = detector(img)
+            count=0
+            for d in faces:
+                d_top = d.top()
+                d_bottom = d.bottom()
+                d_left = d.left()
+                d_right = d.right()
+                print "left,top,right,bottom:", d.left(), d.top(), d.right(), d.bottom()
+
+                if d.top() > 100:
+                    d_top = d.top() - 100
+                else:
+                    d_top = 0
+                if height - d.bottom() > 100:
+                    d_bottom = d.bottom() + 100
+                else:
+                    d_bottom = height
+                if d.left() > 100:
+                    d_left = d.left() - 100
+                else:
+                    d_left = 0
+                if width - d.right() > 100:
+                    d_right = d.right() + 100
+                else:
+                    d_right = width
+                count+=1
+                #print d_top, d_bottom, d_left, d_right
+                #cropped = img[d.top():d.bottom(), d.left():d.right()]
+                cropped = img[d_top:d_bottom, d_left:d_right]
+                if (width > 800 and height > 900):
+                    grayimg = color.rgb2gray(cropped)
+                else:
+                    grayimg = color.rgb2gray(img)
+                io.imsave(base_save+str(count)+file,grayimg)
+                count+=1
+                histogramdata = lbpDesc.calculatehistogram(grayimg)
+                #add the labels and data
+                label_list.append(class_index)
+                data_list.append(histogramdata)
     #now need to dump this data so that we can train our system anytime
     print "The number of image processed="+str(count)+"\n"
     dumpdata()
