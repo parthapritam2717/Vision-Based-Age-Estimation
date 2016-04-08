@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1c473920-5bb0-4521-8653-ecc04ed8cb53" name="Default" comment="emotion detection completed&#10;">
+    <list default="true" id="1c473920-5bb0-4521-8653-ecc04ed8cb53" name="Default" comment="happy added&#10;">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="ageidentification.iws" />
@@ -443,7 +443,14 @@
       <option name="project" value="LOCAL" />
       <updated>1460126283815</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="happy added&#10;">
+      <created>1460126312321</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1460126312321</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -484,7 +491,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="face detection and cropping&#10;" />
     <MESSAGE value="emotion detection completed&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="emotion detection completed&#10;" />
+    <MESSAGE value="happy added&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="happy added&#10;" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
