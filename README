@@ -17,7 +17,7 @@ conda install scikit-image
 5.numpy:- will be already installed with anaconda2
 6.pickle:- most probably its already installed with anaconda2
 
-<====================================Run===================================>
+<====================================Testing the system===================================>
 Age estimation:-
 Run the testing.py file for age detection after adding your frontal face image in the image/testing folder.
 Emotion estimation:-
@@ -25,8 +25,11 @@ Run the testing.py file for emotion detection after adding your frontal face ima
 
 
 <=================================Retraining the SVM============================>
+Add your respective data set files to the training folders whose names are self explanatory.
+TrainingAge->contains folders for age range 0-10,11-20,21-30,31-40,41-50,51-60,61-70.
+TrainingEmotion->contains folders for emotion angry,surprised,sad,neutral,happy.
+Then run the respective training file :-
 
-
-
-
+->training.py for age.
+->training_emo.py for emotion. 
 
