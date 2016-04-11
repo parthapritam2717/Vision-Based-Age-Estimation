@@ -1,6 +1,8 @@
 # Age and Emotion estimation system using Local Binary Pattern and using Support Vector Machine.#
 
 @author:# **PARTHA PRITAM MAHANTA** #
+Special thanks to:- ADISH WAMBURKAR
+
 Indian institute Of Technology, Guwahati
 
 This project estimates the age of a person given the frontal face image and also give an estimation of the persons emotion based on the image supplied. 
