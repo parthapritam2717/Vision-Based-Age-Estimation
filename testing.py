@@ -9,11 +9,12 @@ import numpy as np
 from skimage import io, feature, color
 from skimage import novice
 from sklearn.svm import LinearSVC
+from sklearn.externals import joblib
 
 
 def fxn():
     warnings.warn("deprecated", DeprecationWarning)
-
+separator=os.sep
 
 class LocalBinaryPatterns:
     """This class is to define the LBP value of a pixel"""
@@ -36,35 +37,24 @@ class LocalBinaryPatterns:
 
 age_list={0:"0-10",1:"11-20",2:"21-30",3:"31-40",4:"41-50",5:"51-60",6:"61-70"}
 
-# the data and label lists
-label_list = []
-data_list = []
-model = LinearSVC(C=100.0, random_state=42)
 
-def trainSystem():
-    global  model
-    global data_list
-    global label_list
-    #read the training data and the training label from the text file
-    with open("training_label.txt", 'rb') as f:
-        label_list = pickle.load(f)
-    with open("training_data.txt", 'rb') as f:
-        data_list = pickle.load(f)
-
-    #now train the linear SVM model for classification of age
-    model.fit(data_list, label_list)
 
 
 def testsystem():
     detector = dlib.get_frontal_face_detector()
-    base_save = "/home/partha/projects/ageidentification/dumptest/"
+
     global model
     lbpDesc=LocalBinaryPatterns(24, 8)
-    basepath_testing = "/home/partha/projects/ageidentification/images/testing"
+    basepath_testing = os.getcwd()  # "/home/partha/projects/ageidentification/images/testing"
+    bb = "images"
+    basepath_temp = os.path.join(basepath_testing, bb)
+    basepath_temp = os.path.join(basepath_temp, "testing")
+    basepath_testing = basepath_temp
+    base_save = os.path.join(os.getcwd(), "dumptest")
     for fname_training in os.listdir(basepath_testing):
         #do the image processing calculate the LBp for the test image and then find which class it belong
-        img = io.imread(basepath_testing + "/" + fname_training)
-        img_temp = novice.open(basepath_testing + "/" + fname_training)
+        img = io.imread(basepath_testing + separator + fname_training)
+        img_temp = novice.open(basepath_testing + separator + fname_training)
         width,height=img_temp.size
         print width,height
         """face detection and cropping"""
@@ -98,7 +88,7 @@ def testsystem():
             #cropped = img[d.top():d.bottom(), d.left():d.right()]
             cropped = img[d_top:d_bottom, d_left:d_right]
             if(width>800 and height>900):
-                io.imsave(base_save +str(count)+ fname_training, cropped)
+                #io.imsave(base_save +str(count)+ fname_training, cropped)
                 grayimg = color.rgb2gray(cropped)
                 histogramdata = lbpDesc.calculatehistogram(grayimg)
                 warnings.filterwarnings("ignore")
@@ -108,7 +98,7 @@ def testsystem():
                 plt.imshow(cropped)
                 plt.show()
             else:
-                io.imsave(base_save + str(count)+fname_training, img)
+                #io.imsave(base_save + str(count)+fname_training, img)
                 grayimg = color.rgb2gray(img)
                 histogramdata = lbpDesc.calculatehistogram(grayimg)
                 warnings.filterwarnings("ignore")
@@ -118,5 +108,5 @@ def testsystem():
                 plt.imshow(img)
                 plt.show()
 #program execution
-trainSystem()
+model=joblib.load("agemodel.txt")
 testsystem()
