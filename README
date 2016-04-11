@@ -1,4 +1,4 @@
-# Age and Emotion detection system using LBP and SVM #
+# Age and Emotion estimation system using Local Binary Pattern and using Support Vector Machine.#
 
 @author:# **PARTHA PRITAM MAHANTA** #
 Indian institute Of Technology, Guwahati
@@ -31,5 +31,4 @@ TrainingEmotion->contains folders for emotion angry,surprised,sad,neutral,happy.
 Then run the respective training file :-
 
 ->training.py for age.
-->training_emo.py for emotion. 
-
+->training_emo.py for emotion.
