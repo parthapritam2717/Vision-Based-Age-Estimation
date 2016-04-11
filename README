@@ -2,9 +2,31 @@
 
 @author:# **PARTHA PRITAM MAHANTA** #
 Indian institute Of Technology, Guwahati
+
 This project estimates the age of a person given the frontal face image and also give an estimation of the persons emotion based on the image supplied. 
 
-**Installation:**
+<===============================**Installation:**=====================================>
+                                **Prerequisites**
+1. python 2.7
+2. Dlib- pip install dlib
+3. scikit-learn:- It has a lengthy installation process with some dependencies of its own.
+So download and install anaconda2 which will install scikit learn along with all its dependencies.
+steps to install scikit-learn can be found in the following link:http://scikit-learn.org/stable/install.html
+4.scikit-image:- pip install scikit-image OR if you are using conda
+conda install scikit-image
+5.numpy:- will be already installed with anaconda2
+6.pickle:- most probably its already installed with anaconda2
+
+<====================================Run===================================>
+Age estimation:-
+Run the testing.py file for age detection after adding your frontal face image in the image/testing folder.
+Emotion estimation:-
+Run the testing.py file for emotion detection after adding your frontal face image in the image/testing folder.
+
+
+<=================================Retraining the SVM============================>
+
+
 
 
 
