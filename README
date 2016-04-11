@@ -1,2 +1,10 @@
-@author:PARTHA PRITAM MAHANTA
-This project estimates the age of a person given the frontal face image and also give an estimation of the persons emotion based on the image supplied. run the testing emotion file for emotion estimation and the testing file for age detection.
+# Age and Emotion detection system using LBP and SVM #
+
+@author:# **PARTHA PRITAM MAHANTA** #
+Indian institute Of Technology, Guwahati
+This project estimates the age of a person given the frontal face image and also give an estimation of the persons emotion based on the image supplied. 
+
+**Installation:**
+
+
+
